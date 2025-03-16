@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% include 'styles/projects.html' %}
 <div class="min-h-screen bg-pixel-dark relative">
     <!-- Background Effects -->
     <div class="cyber-grid-pattern"></div>
@@ -40,41 +41,44 @@
         <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for project in projects %}
-            <div class="project-card cyber-card rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300">
-                <!-- Project Image -->
-                <div class="relative h-48 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rgba(13, 12, 15, 0.3) to-rgba(13, 12, 15, 0.5)"></div>
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
-                    
-                    <!-- Tech Stack Pills -->
-                    <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
-                        {% for tech in project.technologies.all %}
-                        <span class="glass-effect px-3 py-1 rounded-full text-xs text-cyber-pastel-purple">
-                            {{ tech.name }}
-                        </span>
-                        {% endfor %}
+            <div class="project-card-container">
+                <div class="border-glow"></div>
+                <div class="project-card cyber-card transform hover:scale-105 transition-all duration-300">
+                    <!-- Project Image -->
+                    <div class="relative h-48 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rgba(13, 12, 15, 0.3) to-rgba(13, 12, 15, 0.5)"></div>
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+                        
+                        <!-- Tech Stack Pills -->
+                        <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                            {% for tech in project.technologies.all %}
+                            <span class="glass-effect px-3 py-1 rounded-full text-xs text-cyber-pastel-purple">
+                                {{ tech.name }}
+                            </span>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Project Info -->
-                <div class="p-6">
-                    <h3 class="text-xl pixel-font text-cyber-pastel-purple mb-2 neon-text">{{ project.title }}</h3>
-                    <p class="text-cyber-pastel-pink/90 mb-4">{{ project.description }}</p>
-                    
-                    <!-- Project Links -->
-                    <div class="flex gap-4">
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" target="_blank" 
-                           class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
-                            <i class="fab fa-github mr-2"></i>Code
-                        </a>
-                        {% endif %}
-                        {% if project.live_url %}
-                        <a href="{{ project.live_url }}" target="_blank"
-                           class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                        </a>
-                        {% endif %}
+                    <!-- Project Info -->
+                    <div class="p-6">
+                        <h3 class="text-xl pixel-font text-cyber-pastel-purple mb-2 neon-text">{{ project.title }}</h3>
+                        <p class="text-cyber-pastel-pink/90 mb-4">{{ project.description }}</p>
+                        
+                        <!-- Project Links -->
+                        <div class="flex gap-4">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" 
+                               class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank"
+                               class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,86 +86,4 @@
         </div>
     </div>
 </div>
-
-<!-- Add these styles -->
-<style>
-    .cyber-hexagon {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0L30 8.66L45 0L60 15L51.34 30L60 45L45 60L30 51.34L15 60L0 45L8.66 30L0 15L15 0Z' fill='none' stroke='rgba(191, 0, 255, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
-        background-size: 60px 60px;
-        opacity: 0.5;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .filter-btn.active {
-        background: rgba(191, 0, 255, 0.2);
-        box-shadow: 0 0 15px rgba(191, 0, 255, 0.3);
-    }
-
-    .neon-text {
-        text-shadow: 0 0 10px rgba(191, 0, 255, 0.5);
-    }
-
-    .shadow-neon {
-        box-shadow: 
-            0 0 5px rgba(191, 0, 255, 0.2),
-            0 0 10px rgba(191, 0, 255, 0.2),
-            0 0 15px rgba(191, 0, 255, 0.2);
-    }
-
-    .section-icon {
-        animation: glow 2s infinite;
-    }
-
-    @keyframes glow {
-        0%, 100% { filter: drop-shadow(0 0 2px rgba(191, 0, 255, 0.7)); }
-        50% { filter: drop-shadow(0 0 8px rgba(191, 0, 255, 0.9)); }
-    }
-</style>
-
-<!-- Add this JavaScript for filter functionality -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-
-                const filter = button.textContent.trim().toLowerCase();
-                
-                projectCards.forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease';
-                    } else {
-                        const tags = Array.from(card.querySelectorAll('.tech-tag'))
-                            .map(tag => tag.textContent.toLowerCase());
-                        
-                        if (tags.includes(filter)) {
-                            card.style.display = 'block';
-                            card.style.animation = 'fadeIn 0.5s ease';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
-    });
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</script>
 {% endblock %}
