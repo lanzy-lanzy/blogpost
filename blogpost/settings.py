@@ -153,13 +153,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 TEMPLATES[0]['DIRS'].append(os.path.join(BASE_DIR, 'templates'))
 
 # Email Configuration for Gmail
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Change back to SMTP backend
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bigbren480@gmail.com'
-EMAIL_HOST_PASSWORD = 'vuhmpiryzbdezrmp'
-EMAIL_TIMEOUT = 20  # This sets the global timeout for SMTP connections
+EMAIL_HOST_PASSWORD = 'vuhmpiryzbdezrmp'  # Make sure this is your correct App Password
+EMAIL_TIMEOUT = None
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -168,11 +168,10 @@ EMAIL_USE_SSL = False
 EMAIL_SSL_CERTFILE = None
 EMAIL_SSL_KEYFILE = None
 
-# Connection Pool Settings
-EMAIL_MAX_RETRIES = 3
-EMAIL_RETRY_DELAY = 1  # seconds
+# Remove this line or comment it out as it's forcing console backend
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# SMTP Debug Settings (remove in production)
+# Debug SMTP
 DEBUG_SMTP = True
 if DEBUG_SMTP:
     import logging
