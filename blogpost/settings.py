@@ -159,7 +159,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bigbren480@gmail.com'
 EMAIL_HOST_PASSWORD = 'vuhmpiryzbdezrmp'
-EMAIL_TIMEOUT = 90  # Increased timeout
+EMAIL_TIMEOUT = 20  # This sets the global timeout for SMTP connections
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -167,6 +167,10 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_USE_SSL = False
 EMAIL_SSL_CERTFILE = None
 EMAIL_SSL_KEYFILE = None
+
+# Connection Pool Settings
+EMAIL_MAX_RETRIES = 3
+EMAIL_RETRY_DELAY = 1  # seconds
 
 # SMTP Debug Settings (remove in production)
 DEBUG_SMTP = True
