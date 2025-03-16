@@ -2,79 +2,7 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .cyber-hexagon {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0L30 8.66L45 0L60 15L51.34 30L60 45L45 60L30 51.34L15 60L0 45L8.66 30L0 15L15 0Z' fill='none' stroke='rgba(191, 0, 255, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
-        background-size: 60px 60px;
-        opacity: 0.5;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    .tech-dots {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(rgba(191, 0, 255, 0.1) 1px, transparent 1px);
-        background-size: 20px 20px;
-        opacity: 0.3;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    .cyber-lines {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: 
-            linear-gradient(90deg, rgba(191, 0, 255, 0.03) 1px, transparent 1px) 0 0,
-            linear-gradient(rgba(191, 0, 255, 0.03) 1px, transparent 1px) 0 0;
-        background-size: 100px 100px;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    .content-container {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .section-icon {
-        font-size: 1.5rem;
-        color: rgba(191, 0, 255, 0.7);
-        margin-right: 0.5rem;
-        animation: glow 2s infinite;
-    }
-
-    @keyframes glow {
-        0%, 100% { filter: drop-shadow(0 0 2px rgba(191, 0, 255, 0.7)); }
-        50% { filter: drop-shadow(0 0 8px rgba(191, 0, 255, 0.9)); }
-    }
-
-    .icon-container {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    .icon-container::after {
-        content: '';
-        position: absolute;
-        left: 2.5rem;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(191, 0, 255, 0.7), transparent);
-    }
-
-    .contact-icon {
-        margin-right: 0.5rem;
-        color: rgba(191, 0, 255, 0.8);
-    }
-</style>
+{% include 'styles/home.html' %}
 
 <div class="content-container">
     <div class="cyber-hexagon"></div>
@@ -102,41 +30,44 @@
             <!-- Projects Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 {% for project in projects|slice:":3" %}
-                <div class="project-card cyber-card rounded-xl overflow-hidden transform hover:scale-105 transition-all duration-300">
-                    <!-- Project Image -->
-                    <div class="relative h-48 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rgba(13, 12, 15, 0.3) to-rgba(13, 12, 15, 0.5)"></div>
-                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
-                        
-                        <!-- Tech Stack Pills -->
-                        <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
-                            {% for tech in project.technologies.all %}
-                            <span class="glass-effect px-3 py-1 rounded-full text-xs text-cyber-pastel-purple">
-                                {{ tech.name }}
-                            </span>
-                            {% endfor %}
+                <div class="project-card-container">
+                    <div class="border-glow"></div>
+                    <div class="project-card cyber-card transform hover:scale-105 transition-all duration-300">
+                        <!-- Project Image -->
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-rgba(13, 12, 15, 0.3) to-rgba(13, 12, 15, 0.5)"></div>
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+                            
+                            <!-- Tech Stack Pills -->
+                            <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                                {% for tech in project.technologies.all %}
+                                <span class="glass-effect px-3 py-1 rounded-full text-xs text-cyber-pastel-purple">
+                                    {{ tech.name }}
+                                </span>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Project Info -->
-                    <div class="p-6">
-                        <h3 class="text-xl pixel-font text-cyber-pastel-purple mb-2 neon-text">{{ project.title }}</h3>
-                        <p class="text-cyber-pastel-pink/90 mb-4">{{ project.description }}</p>
-                        
-                        <!-- Project Links -->
-                        <div class="flex gap-4">
-                            {% if project.github_url %}
-                            <a href="{{ project.github_url }}" target="_blank" 
-                               class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                            {% endif %}
-                            {% if project.live_url %}
-                            <a href="{{ project.live_url }}" target="_blank"
-                               class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
-                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                            </a>
-                            {% endif %}
+                        <!-- Project Info -->
+                        <div class="p-6">
+                            <h3 class="text-xl pixel-font text-cyber-pastel-purple mb-2 neon-text">{{ project.title }}</h3>
+                            <p class="text-cyber-pastel-pink/90 mb-4">{{ project.description }}</p>
+                            
+                            <!-- Project Links -->
+                            <div class="flex gap-4">
+                                {% if project.github_url %}
+                                <a href="{{ project.github_url }}" target="_blank" 
+                                   class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
+                                    <i class="fab fa-github mr-2"></i>Code
+                                </a>
+                                {% endif %}
+                                {% if project.live_url %}
+                                <a href="{{ project.live_url }}" target="_blank"
+                                   class="glass-effect px-4 py-2 rounded-lg text-cyber-pastel-purple hover:shadow-neon transition-all duration-300">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>

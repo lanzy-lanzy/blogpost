@@ -1,0 +1,153 @@
+{% load static %}
+<style>
+    .cyber-hexagon {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0L30 8.66L45 0L60 15L51.34 30L60 45L45 60L30 51.34L15 60L0 45L8.66 30L0 15L15 0Z' fill='none' stroke='rgba(191, 0, 255, 0.1)' stroke-width='1'/%3E%3C/svg%3E");
+        background-size: 60px 60px;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .tech-dots {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(rgba(191, 0, 255, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .cyber-lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: 
+            linear-gradient(90deg, rgba(191, 0, 255, 0.03) 1px, transparent 1px) 0 0,
+            linear-gradient(rgba(191, 0, 255, 0.03) 1px, transparent 1px) 0 0;
+        background-size: 100px 100px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .content-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-icon {
+        font-size: 1.5rem;
+        color: rgba(191, 0, 255, 0.7);
+        margin-right: 0.5rem;
+        animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+        0%, 100% { filter: drop-shadow(0 0 2px rgba(191, 0, 255, 0.7)); }
+        50% { filter: drop-shadow(0 0 8px rgba(191, 0, 255, 0.9)); }
+    }
+
+    .icon-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .icon-container::after {
+        content: '';
+        position: absolute;
+        left: 2.5rem;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(191, 0, 255, 0.7), transparent);
+    }
+
+    .contact-icon {
+        margin-right: 0.5rem;
+        color: rgba(191, 0, 255, 0.8);
+    }
+
+    .project-card-container {
+        position: relative;
+        isolation: isolate;
+        padding: 2px;
+        border-radius: 1rem;
+    }
+
+    /* Rotating glow effect */
+    .border-glow {
+        position: absolute;
+        inset: -2px;  /* Extend slightly outside the container */
+        border-radius: inherit;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .border-glow::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(191, 0, 255, 0.3),
+            rgba(255, 0, 191, 0.3),
+            rgba(0, 255, 255, 0.3),
+            transparent
+        );
+        animation: rotate 4s linear infinite;
+        filter: blur(8px);
+    }
+
+    .border-glow::after {
+        content: '';
+        position: absolute;
+        inset: 2px;  /* Create inner border */
+        border-radius: inherit;
+        background: rgb(13, 12, 15);
+    }
+
+    .project-card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: rgba(13, 12, 15, 0.8);
+        border-radius: calc(1rem - 2px);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        z-index: 1;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<!-- Add mouse tracking script for cyber glow effect -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const projectCards = document.querySelectorAll('.project-card-container');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+    });
+</script>

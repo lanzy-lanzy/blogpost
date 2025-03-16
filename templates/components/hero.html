@@ -1,6 +1,6 @@
 {% load static %}
 <div class="text-center mb-8">
-    <div class="glass-effect cyber-border p-8 rounded-2xl shadow-glass transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden hero-container">
+    <div class="cyber-border p-8 rounded-2xl shadow-glass transform hover:scale-[1.01] transition-all duration-300 relative overflow-hidden hero-container">
         <!-- Animated Cyber Grid Background -->
         <div class="absolute inset-0 cyber-grid"></div>
 
@@ -30,48 +30,51 @@
 
         <!-- Profile Picture Container -->
         <div class="relative w-48 h-48 mx-auto mb-8 profile-container group">
-            <!-- Replace the existing structure with the new rotating border -->
-            <div class="rotating-border-wrapper w-full h-full">
-                <div class="profile-content">
-                    <!-- Cyber Glow Effect -->
-                    <div class="cyber-glow rounded-full"></div>
-                    
-                    <!-- Lightning Effects -->
-                    <div class="absolute inset-0 rounded-full">
-                        <div class="lightning-effect"></div>
-                        <div class="lightning-effect delay-300"></div>
-                        <div class="lightning-effect delay-600"></div>
-                    </div>
-                    
-                    <!-- Profile Picture -->
-                    <div class="absolute inset-2 rounded-full overflow-hidden neu-border transform transition-transform duration-300 hover:scale-105 group">
-                        <img 
-                            src="{% static 'images/profile.jpg' %}" 
-                            alt="Gerlan B. Dorona" 
-                            class="w-full h-full object-cover filter brightness-95 hover:brightness-110 transition-all duration-300"
-                        >
-                        <!-- Tech-inspired name overlay -->
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <div class="text-sm font-mono text-white/90 flex flex-col items-center space-y-1">
-                                <span class="typing-effect">GERLAN_B_DORONA</span>
-                                <div class="flex items-center space-x-2">
-                                    <span class="h-1.5 w-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                                    <span class="text-xs text-green-400 glitch-text">[ONLINE]</span>
-                                </div>
-                                <div class="w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent animate-pulse"></div>
+            <!-- Rotating Glow Effect -->
+            <div class="rotating-glow"></div>
+            
+            <!-- Rotating Border Effect -->
+            <div class="rotating-border"></div>
+            
+            <div class="profile-content">
+                <!-- Cyber Glow Effect -->
+                <div class="cyber-glow rounded-full"></div>
+                
+                <!-- Lightning Effects -->
+                <div class="absolute inset-0 rounded-full">
+                    <div class="lightning-effect"></div>
+                    <div class="lightning-effect delay-300"></div>
+                    <div class="lightning-effect delay-600"></div>
+                </div>
+                
+                <!-- Profile Picture -->
+                <div class="absolute inset-2 rounded-full overflow-hidden neu-border transform transition-transform duration-300 hover:scale-105 group">
+                    <img 
+                        src="{% static 'images/profile.jpg' %}" 
+                        alt="Gerlan B. Dorona" 
+                        class="w-full h-full object-cover filter brightness-95 hover:brightness-110 transition-all duration-300"
+                    >
+                    <!-- Tech-inspired name overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <div class="text-sm font-mono text-white/90 flex flex-col items-center space-y-1">
+                            <span class="typing-effect">GERLAN_B_DORONA</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="h-1.5 w-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                                <span class="text-xs text-green-400 glitch-text">[ONLINE]</span>
                             </div>
+                            <div class="w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent animate-pulse"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Keep the decorative icons -->
-            <div class="absolute -top-2 -right-2 text-cyber-neon-purple animate-pulse">
-                <i class="fas fa-code-branch text-xl"></i>
-            </div>
-            <div class="absolute -bottom-2 -left-2 text-cyber-neon-pink animate-pulse delay-300">
-                <i class="fas fa-microchip text-xl"></i>
-            </div>
+        <!-- Keep the decorative icons -->
+        <div class="absolute -top-2 -right-2 text-cyber-neon-purple animate-pulse">
+            <i class="fas fa-code-branch text-xl"></i>
+        </div>
+        <div class="absolute -bottom-2 -left-2 text-cyber-neon-pink animate-pulse delay-300">
+            <i class="fas fa-microchip text-xl"></i>
         </div>
 
         <!-- Name and Title -->
@@ -95,6 +98,16 @@
                 <!-- Decorative elements -->
                 <div class="cyber-line-left"></div>
                 <div class="cyber-line-right"></div>
+            </div>
+
+            <!-- Apps Typewriter Section -->
+            <div class="app-typewriter-container">
+                <div class="app-typewriter-list">
+                    <div class="app-typewriter">> Building AI-Powered Web Applications</div>
+                    <div class="app-typewriter">> Developing Smart Automation Solutions</div>
+                    <div class="app-typewriter">> Creating Custom ChatGPT Integrations</div>
+                    <div class="app-typewriter">> Crafting Responsive Web Interfaces</div>
+                </div>
             </div>
         </div>
 
