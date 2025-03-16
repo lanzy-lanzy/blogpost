@@ -1,0 +1,13 @@
+<div class="cyber-card p-6 rounded-xl transform hover:scale-105 transition-all duration-300">
+    <div class="card-content">
+        <h3 class="pixel-font text-cyber-pastel-purple mb-4 text-xl font-medium neon-text">{{ title }}</h3>
+        <ul class="space-y-3">
+            {% for skill in skills %}
+            <li class="flex items-center text-cyber-pastel-pink">
+                <span class="w-2 h-2 bg-cyber-neon-pink rounded-full mr-2 animate-pulse"></span>
+                {{ skill }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

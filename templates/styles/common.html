@@ -1,0 +1,149 @@
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700&display=swap');
+    
+    :root {
+        --card-bg: rgba(20, 20, 25, 0.3);
+        --card-hover-bg: rgba(25, 25, 35, 0.4);
+        --neon-purple: rgba(191, 0, 255, 0.7);
+        --neon-pink: rgba(255, 0, 191, 0.7);
+    }
+    
+    .pixel-font {
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 0.02em;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, rgba(13, 12, 15, 0.97) 0%, rgba(20, 18, 24, 0.95) 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Enhanced Cyber Card Styles */
+    .cyber-card {
+        position: relative;
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(191, 0, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cyber-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(191, 0, 255, 0.1) 30%,
+            rgba(255, 0, 191, 0.1) 70%,
+            transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .cyber-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+            125deg,
+            var(--neon-purple),
+            var(--neon-pink)
+        );
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.3;
+        transition: opacity 0.4s ease;
+    }
+
+    .cyber-card:hover {
+        background: var(--card-hover-bg);
+        transform: translateY(-5px);
+        box-shadow: 
+            0 0 20px rgba(191, 0, 255, 0.15),
+            0 0 40px rgba(255, 0, 191, 0.15);
+    }
+
+    .cyber-card:hover::before {
+        opacity: 1;
+    }
+
+    .cyber-card:hover::after {
+        opacity: 0.5;
+    }
+
+    .card-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Neon Text Effect */
+    .neon-text {
+        text-shadow: 
+            0 0 5px rgba(191, 0, 255, 0.8),
+            0 0 10px rgba(191, 0, 255, 0.4),
+            0 0 15px rgba(191, 0, 255, 0.2);
+    }
+
+    /* Glass Effect (for other elements) */
+    .glass-effect {
+        background: rgba(20, 20, 25, 0.4);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(191, 0, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .glass-effect:hover {
+        background: rgba(25, 25, 35, 0.5);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(191, 0, 255, 0.3);
+        box-shadow: 
+            0 0 20px rgba(191, 0, 255, 0.15),
+            inset 0 0 20px rgba(191, 0, 255, 0.15);
+    }
+
+    /* Enhanced Shadows */
+    .shadow-glass {
+        box-shadow: 
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06),
+            0 0 15px rgba(191, 0, 255, 0.1);
+    }
+
+    .shadow-neon {
+        box-shadow: 
+            0 0 30px rgba(191, 0, 255, 0.2),
+            0 0 50px rgba(255, 0, 191, 0.2);
+    }
+
+    /* Add these to your existing styles */
+    .cyber-card {
+        background: rgba(20, 20, 25, 0.3);
+        border: 1px solid rgba(191, 0, 255, 0.2);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .cyber-card:hover {
+        border-color: rgba(191, 0, 255, 0.4);
+        box-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
+    }
+
+    .gradient-text {
+        background: linear-gradient(45deg, #bf00ff, #ff00bf);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+</style>

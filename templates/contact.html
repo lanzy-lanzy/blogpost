@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="glass-effect cyber-border p-8 rounded-2xl shadow-glass relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 cyber-grid-pattern opacity-10"></div>
+        <div class="absolute inset-0 tech-dots opacity-20"></div>
+
+        <!-- Main Content -->
+        <div class="relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-4xl pixel-font gradient-text mb-4">Contact Me</h1>
+                <div class="w-32 h-1 mx-auto bg-gradient-to-r from-cyber-neon-purple to-cyber-neon-pink"></div>
+            </div>
+
+            <!-- Contact Form -->
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Name Input -->
+                <div class="form-group">
+                    <label class="block pixel-font text-cyber-pastel-purple mb-2">Name</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-cyber-pastel-purple/50"></i>
+                        <input type="text" name="name" required
+                            class="w-full glass-effect px-12 py-3 rounded-xl text-white bg-transparent border border-cyber-pastel-purple/30 focus:border-cyber-pastel-purple focus:outline-none focus:shadow-neon transition-all duration-300"
+                            placeholder="Your Name">
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-group">
+                    <label class="block pixel-font text-cyber-pastel-purple mb-2">Email</label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-cyber-pastel-purple/50"></i>
+                        <input type="email" name="email" required
+                            class="w-full glass-effect px-12 py-3 rounded-xl text-white bg-transparent border border-cyber-pastel-purple/30 focus:border-cyber-pastel-purple focus:outline-none focus:shadow-neon transition-all duration-300"
+                            placeholder="your.email@example.com">
+                    </div>
+                </div>
+
+                <!-- Subject Input -->
+                <div class="form-group">
+                    <label class="block pixel-font text-cyber-pastel-purple mb-2">Subject</label>
+                    <div class="relative">
+                        <i class="fas fa-heading absolute left-4 top-1/2 transform -translate-y-1/2 text-cyber-pastel-purple/50"></i>
+                        <input type="text" name="subject" required
+                            class="w-full glass-effect px-12 py-3 rounded-xl text-white bg-transparent border border-cyber-pastel-purple/30 focus:border-cyber-pastel-purple focus:outline-none focus:shadow-neon transition-all duration-300"
+                            placeholder="Message Subject">
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="form-group">
+                    <label class="block pixel-font text-cyber-pastel-purple mb-2">Message</label>
+                    <div class="relative">
+                        <i class="fas fa-message absolute left-4 top-4 text-cyber-pastel-purple/50"></i>
+                        <textarea name="message" required rows="5"
+                            class="w-full glass-effect px-12 py-3 rounded-xl text-white bg-transparent border border-cyber-pastel-purple/30 focus:border-cyber-pastel-purple focus:outline-none focus:shadow-neon transition-all duration-300"
+                            placeholder="Your message here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit"
+                        class="glass-effect px-8 py-3 rounded-xl text-cyber-pastel-purple hover:text-white transition-all duration-300 hover:shadow-neon-strong group relative overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2 group-hover:rotate-45 transition-transform duration-300"></i>
+                            Send Message
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyber-neon-purple to-cyber-neon-pink opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Contact Information -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Email Card -->
+                <div class="cyber-card p-6 rounded-xl text-center hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-envelope text-3xl text-cyber-neon-purple mb-4"></i>
+                    <h3 class="pixel-font text-lg text-cyber-pastel-purple mb-2">Email</h3>
+                    <a href="mailto:elghaithheni@gmail.com" class="text-cyber-pastel-pink hover:text-white transition-colors duration-300">
+                        elghaithheni@gmail.com
+                    </a>
+                </div>
+
+                <!-- Location Card -->
+                <div class="cyber-card p-6 rounded-xl text-center hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-location-dot text-3xl text-cyber-neon-purple mb-4"></i>
+                    <h3 class="pixel-font text-lg text-cyber-pastel-purple mb-2">Location</h3>
+                    <p class="text-cyber-pastel-pink">Davao City, Philippines</p>
+                </div>
+
+                <!-- Social Card -->
+                <div class="cyber-card p-6 rounded-xl text-center hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-share-nodes text-3xl text-cyber-neon-purple mb-4"></i>
+                    <h3 class="pixel-font text-lg text-cyber-pastel-purple mb-2">Social</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://github.com/yourusername" target="_blank" class="text-cyber-pastel-pink hover:text-white transition-colors duration-300">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-cyber-pastel-pink hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="text-cyber-pastel-pink hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .shadow-neon {
+        box-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
+    }
+
+    .shadow-neon-strong {
+        box-shadow: 
+            0 0 20px rgba(191, 0, 255, 0.3),
+            0 0 40px rgba(191, 0, 255, 0.2);
+    }
+
+    .form-group input:focus ~ i,
+    .form-group textarea:focus ~ i {
+        color: rgba(191, 0, 255, 0.8);
+    }
+</style>
+{% endblock content %}

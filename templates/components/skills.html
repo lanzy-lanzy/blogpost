@@ -1,0 +1,9 @@
+<div class="mb-8 mt-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% include 'components/skill-card.html' with title="Frontend" skills=frontend_skills %}
+        {% include 'components/skill-card.html' with title="Backend" skills=backend_skills %}
+        {% include 'components/skill-card.html' with title="DevOps" skills=devops_skills %}
+        {% include 'components/skill-card.html' with title="AI/ML" skills=ai_skills %}
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load static tailwind_tags %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio-gerlan</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% tailwind_css %}
+    {% include 'styles/common.html' %}
+    {% include 'styles/nav.html' %}
+    {% include 'styles/animations.html' %}
+    {% include 'styles/hero.html' %}
+</head>
+<body class="bg-pixel-dark text-white">
+    <!-- Corner Icons -->
+    <i class="fas fa-microchip corner-icon top-left-icon"></i>
+    <i class="fas fa-network-wired corner-icon top-right-icon"></i>
+    <i class="fas fa-code corner-icon bottom-left-icon"></i>
+    <i class="fas fa-terminal corner-icon bottom-right-icon"></i>
+
+    <!-- Floating Circuit Icons -->
+    <div class="floating-circuit-icons">
+        <i class="fas fa-circuit-board circuit-icon" style="top: 25%; left: 15%; font-size: 2rem;"></i>
+        <i class="fas fa-microchip circuit-icon" style="top: 45%; right: 10%; font-size: 1.5rem;"></i>
+        <i class="fas fa-code circuit-icon" style="bottom: 30%; left: 20%; font-size: 1.8rem;"></i>
+    </div>
+
+    <div class="cyber-grid-pattern"></div>
+    <div class="tech-circuit"></div>
+    <div id="particles-js" class="fixed inset-0 z-0 pointer-events-none"></div>
+    {% include 'components/nav.html' %}
+    <main class="min-h-screen pt-16 relative z-10">
+        {% block content %}
+        {% endblock content %}
+    </main>
+    {% include 'components/footer.html' %}
+    
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 50,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#bf00ff'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.2,
+                    random: true
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#bf00ff',
+                    opacity: 0.1,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out'
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

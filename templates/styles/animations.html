@@ -1,0 +1,64 @@
+{% load static %}
+<style>
+    /* Typewriter Animation */
+    .typewriter {
+        display: inline-block;
+    }
+    
+    .typing-text {
+        display: inline-block;
+        overflow: hidden;
+        border-right: 3px solid #bf00ff;
+        white-space: nowrap;
+        margin: 0;
+        width: 0;
+        animation: 
+            typing 3s steps(40, end) forwards,
+            blink-caret 0.75s step-end infinite,
+            deleteText 2s steps(40, end) infinite;
+        animation-delay: 1s, 0s, 6s;
+        animation-fill-mode: both;
+    }
+
+    @keyframes typing {
+        0%, 50%, 100% { width: 0; }
+        10%, 40% { width: 100%; }
+    }
+
+    @keyframes deleteText {
+        0%, 50%, 100% { width: 100%; }
+        10%, 40% { width: 0; }
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #bf00ff }
+    }
+
+    /* Neon Effects */
+    .neon-text {
+        text-shadow: 
+            0 0 5px rgba(191, 0, 255, 0.8),
+            0 0 10px rgba(191, 0, 255, 0.6),
+            0 0 15px rgba(191, 0, 255, 0.4),
+            0 0 20px rgba(191, 0, 255, 0.2);
+        animation: neon-pulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neon-pulse {
+        from {
+            text-shadow: 
+                0 0 5px rgba(191, 0, 255, 0.8),
+                0 0 10px rgba(191, 0, 255, 0.6),
+                0 0 15px rgba(191, 0, 255, 0.4),
+                0 0 20px rgba(191, 0, 255, 0.2);
+        }
+        to {
+            text-shadow: 
+                0 0 10px rgba(191, 0, 255, 0.8),
+                0 0 20px rgba(191, 0, 255, 0.6),
+                0 0 30px rgba(191, 0, 255, 0.4),
+                0 0 40px rgba(191, 0, 255, 0.2);
+        }
+    }
+</style>
