@@ -2,6 +2,23 @@
 {% load static %}
 
 {% block content %}
+<style>
+    .spinner {
+        display: none;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+</style>
+
 <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="glass-effect cyber-border p-8 rounded-2xl shadow-glass relative overflow-hidden">
         <!-- Background Elements -->
@@ -10,6 +27,17 @@
 
         <!-- Main Content -->
         <div class="relative z-10">
+            <!-- Messages -->
+            {% if messages %}
+            <div class="mb-6">
+                {% for message in messages %}
+                <div class="{% if message.tags == 'success' %}bg-green-500/20{% else %}bg-red-500/20{% endif %} text-{% if message.tags == 'success' %}green{% else %}red{% endif %}-300 px-4 py-3 rounded-xl mb-4">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <!-- Header -->
             <div class="text-center mb-10">
                 <h1 class="text-4xl pixel-font gradient-text mb-4">Contact Me</h1>
@@ -17,7 +45,7 @@
             </div>
 
             <!-- Contact Form -->
-            <form method="POST" class="space-y-6">
+            <form method="POST" class="space-y-6" id="contactForm">
                 {% csrf_token %}
                 
                 <!-- Name Input -->
@@ -66,11 +94,12 @@
 
                 <!-- Submit Button -->
                 <div class="text-center">
-                    <button type="submit"
+                    <button type="submit" id="submitButton"
                         class="glass-effect px-8 py-3 rounded-xl text-cyber-pastel-purple hover:text-white transition-all duration-300 hover:shadow-neon-strong group relative overflow-hidden">
                         <span class="relative z-10 flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-2 group-hover:rotate-45 transition-transform duration-300"></i>
-                            Send Message
+                            <i class="fas fa-paper-plane mr-2 group-hover:rotate-45 transition-transform duration-300" id="sendIcon"></i>
+                            <i class="fas fa-spinner spinner mr-2" id="spinnerIcon"></i>
+                            <span id="buttonText">Send Message</span>
                         </span>
                         <div class="absolute inset-0 bg-gradient-to-r from-cyber-neon-purple to-cyber-neon-pink opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     </button>
@@ -113,20 +142,42 @@
     </div>
 </div>
 
-<style>
-    .shadow-neon {
-        box-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
-    }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const submitButton = document.getElementById('submitButton');
+    const sendIcon = document.getElementById('sendIcon');
+    const spinnerIcon = document.getElementById('spinnerIcon');
+    const buttonText = document.getElementById('buttonText');
 
-    .shadow-neon-strong {
-        box-shadow: 
-            0 0 20px rgba(191, 0, 255, 0.3),
-            0 0 40px rgba(191, 0, 255, 0.2);
-    }
+    form.addEventListener('submit', function(e) {
+        // Show loading state
+        submitButton.disabled = true;
+        sendIcon.style.display = 'none';
+        spinnerIcon.style.display = 'inline-block';
+        buttonText.textContent = 'Sending...';
 
-    .form-group input:focus ~ i,
-    .form-group textarea:focus ~ i {
-        color: rgba(191, 0, 255, 0.8);
+        // If you want to restore the button state after error
+        // (since the page won't refresh on error)
+        const restoreButton = () => {
+            submitButton.disabled = false;
+            sendIcon.style.display = 'inline-block';
+            spinnerIcon.style.display = 'none';
+            buttonText.textContent = 'Send Message';
+        };
+
+        // Optional: Add error handling if the form submission fails
+        setTimeout(() => {
+            if (document.querySelector('.bg-red-500\\/20')) {
+                restoreButton();
+            }
+        }, 1000);
+    });
+
+    // Check for success message and reset form if found
+    if (document.querySelector('.bg-green-500\\/20')) {
+        form.reset();
     }
-</style>
+});
+</script>
 {% endblock content %}

@@ -151,3 +151,26 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 TEMPLATES[0]['DIRS'].append(os.path.join(BASE_DIR, 'templates'))
+
+# Email Configuration for Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bigbren480@gmail.com'
+EMAIL_HOST_PASSWORD = 'vuhmpiryzbdezrmp'
+EMAIL_TIMEOUT = 90  # Increased timeout
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
+# Additional Email Settings
+EMAIL_USE_SSL = False
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+
+# SMTP Debug Settings (remove in production)
+DEBUG_SMTP = True
+if DEBUG_SMTP:
+    import logging
+    logging.getLogger('django.mail').setLevel(logging.DEBUG)
+    logging.getLogger('django.mail.backends').setLevel(logging.DEBUG)
