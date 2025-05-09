@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Install Node.js dependencies
+      working-directory: ./theme/static_src
+      run: npm install
+        
+    - name: Build Tailwind CSS
+      working-directory: ./theme/static_src
+      run: npm run build
+        
+    - name: Collect static files
+      run: |
+        python manage.py collectstatic --noinput
+        
+    - name: Build static site
+      run: |
+        # Create a directory for the static site
+        mkdir -p _site
+        
+        # Copy static files
+        cp -r staticfiles/* _site/
+        
+        # Create index.html with redirect to GitHub Pages
+        echo '<!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Portfolio - Gerlan</title>
+            <meta http-equiv="refresh" content="0; URL=https://lanzy-lanzy.github.io/blogpost/static/index.html">
+          </head>
+          <body>
+            <p>Redirecting to the portfolio...</p>
+          </body>
+        </html>' > _site/index.html
+        
+        # Create a .nojekyll file to disable Jekyll processing
+        touch _site/.nojekyll
+        
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: _site
+        branch: gh-pages
